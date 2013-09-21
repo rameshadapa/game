@@ -14,5 +14,5 @@ $(PROJ_NAME): $(OBJS)
 	$(CC) -c -o $@ $< `pkg-config --libs --cflags elementary`
 
 clean:
-	rm -rf *.o
+	rm $(OBJS) 
 

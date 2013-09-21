@@ -1,0 +1,21 @@
+#include "../../include/const.h"
+
+collections {
+	group { name, GAME_MAIN_GROUP;
+		parts {
+			part { name, GAME_PLAYABLE_BG;
+				type: RECT;
+				description { state, "default" 0.0;
+					rel1 {
+						relative, ((SCREEN_WIDTH-PLAYABLE_WIDTH)/2)/SCREEN_WIDTH ((SCREEN_HEIGHT-PLAYABLE_HEIGHT)/2)/SCREEN_HEIGHT;
+					}
+					rel2 {
+						relative, ((SCREEN_WIDTH-PLAYABLE_WIDTH)/2+PLAYABLE_WIDTH)/SCREEN_WIDTH ((SCREEN_HEIGHT-PLAYABLE_HEIGHT)/2+PLAYABLE_HEIGHT)/SCREEN_HEIGHT;
+					}
+					color, 255 250 0 255;
+					visible, 1;
+				}
+			}
+		}
+	}
+}

@@ -1,18 +1,31 @@
 PROJ_NAME=game
-SRC_DIR=src
+PROJ_DIR=.
+SRC_DIR=$(PROJ_DIR)/src
+INCLUDE_DIR=$(PROJ_DIR)/include
+DATA_DIR=$(PROJ_DIR)/data
 
 OBJS= $(SRC_DIR)/main.o	\
 
-CC=gcc
+EDJS= $(DATA_DIR)/edje/layout.edj	\
 
-all: $(PROJ_NAME) $(OBJS)
+CC=gcc
+CFLAGS= `pkg-config --cflags elementary` -I$(INCLUDE_DIR)
+LIBS=`pkg-config --libs elementary`
+
+EDJCC=edje_cc
+
+all: $(PROJ_NAME) $(OBJS) $(EDJS)
 
 $(PROJ_NAME): $(OBJS)
-	$(CC) -o $@ $^ `pkg-config --libs --cflags elementary`
+	$(CC) -o $@ $^ $(LIBS)
 
 %.o: %.c
-	$(CC) -c -o $@ $< `pkg-config --libs --cflags elementary`
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+%.edj: %.edc
+	$(EDJCC) $<
 
 clean:
-	rm -rf *.o
+	rm -f $(PROJ_NAME)
+	rm -f *.o
 

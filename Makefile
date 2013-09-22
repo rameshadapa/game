@@ -5,6 +5,9 @@ INCLUDE_DIR=$(PROJ_DIR)/include
 DATA_DIR=$(PROJ_DIR)/data
 
 OBJS= $(SRC_DIR)/main.o	\
+	$(SRC_DIR)/game.o	\
+	$(SRC_DIR)/food.o	\
+	$(SRC_DIR)/snake.o	\
 
 EDJS= $(DATA_DIR)/edje/layout.edj	\
 
@@ -17,15 +20,22 @@ EDJCC=edje_cc
 all: $(PROJ_NAME) $(OBJS) $(EDJS)
 
 $(PROJ_NAME): $(OBJS)
-	$(CC) -o $@ $^ $(LIBS)
+	@echo "Linking library..."
+	@$(CC) -o $@ $^ $(LIBS)
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	@echo "CC	$<"
+	@$(CC) -c -o $@ $< $(CFLAGS)
 
 %.edj: %.edc
-	$(EDJCC) $<
+	@echo "EDJE_CC	$<"
+	@$(EDJCC) $<
 
 clean:
-	rm -f $(PROJ_NAME)
-	rm -f *.o
+	@echo "Removing binary..."
+	@rm -f $(PROJ_NAME)
+	@echo "Removing .edj files..."
+	@rm -f $(EDJS)
+	@echo "Removing objects..."
+	@rm -f $(OBJS) 
 

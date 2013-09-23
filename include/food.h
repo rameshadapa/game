@@ -9,6 +9,8 @@ struct _Snake_Food {
 	Evas_Object 	*mass;
 	Evas_Coord	pos_x;
 	Evas_Coord	pos_y;
+	Evas_Coord 	width;
+	Evas_Coord 	height;
 	Eina_Bool	isHead;
 };
 

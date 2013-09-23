@@ -1,5 +1,6 @@
 
 #include "food.h"
+#include "game.h"
 
 void snake_food_create(Snake_Food *food, Evas_Object *parent)
 {
@@ -10,9 +11,11 @@ void snake_food_create(Snake_Food *food, Evas_Object *parent)
 
 void snake_food_draw(Snake_Food *food)
 {
+	evas_object_resize(food->mass, food->width, food->height);
 	evas_object_show(food->mass);
 }
 
 void snake_food_update(Snake_Food *food)
 {
+	evas_object_move(food->mass, food->pos_x, food->pos_y);
 }

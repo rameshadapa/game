@@ -25,7 +25,7 @@ $(PROJ_NAME): $(OBJS)
 
 %.o: %.c
 	@echo "CC	$<"
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	@$(CC) -c -o $@ $< $(CFLAGS) -DLAYOUT_EDJ="\"$(DATA_DIR)/edje/layout.edj\"" -DPROJ_NAME="\"$(PROJ_NAME)\""
 
 %.edj: %.edc
 	@echo "EDJE_CC	$<"

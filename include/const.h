@@ -15,5 +15,8 @@
 
 #define FOOD_BOXES	25
 
+/** Log functions	**/
+#define LOG_DBG(...)	printf(__VA_ARGS__)
+
 
 #endif 	/**	__CONST_H__	**/

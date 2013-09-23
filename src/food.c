@@ -4,18 +4,30 @@
 
 void snake_food_create(Snake_Food *food, Evas_Object *parent)
 {
-	food = calloc(1, sizeof(Snake_Food));
 	food->mass = evas_object_rectangle_add(evas_object_evas_get(parent));
-	elm_win_resize_object_add(parent, food->mass);
+	evas_object_color_set(food->mass, 255, 0, 0, 255);
 }
 
 void snake_food_draw(Snake_Food *food)
 {
-	evas_object_resize(food->mass, food->width, food->height);
+	evas_object_resize(food->mass, width, height);
 	evas_object_show(food->mass);
 }
 
 void snake_food_update(Snake_Food *food)
 {
-	evas_object_move(food->mass, food->pos_x, food->pos_y);
+	LOG_DBG("%d ::::: %d \n", width, height);
+	evas_object_resize(food->mass, width, height);
+	evas_object_move(food->mass, food->pos_x*width, food->pos_y*height);
+}
+
+void snake_food_generate_random(Snake_Food *food, Evas_Object *parent)
+{
+	int x, y;
+	snake_food_create(food, parent);
+	x = rand()%FOOD_BOXES;
+	y = rand()%FOOD_BOXES;
+	food->pos_x = x;
+	food->pos_y = y;
+	snake_food_update(food);
 }

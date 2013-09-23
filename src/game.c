@@ -5,6 +5,15 @@ static void _on_exit(void *data, Evas_Object *obj, void *event)
 	elm_exit();
 }
 
+static void _on_resize(void *data, Evas *e, Evas_Object *obj, void *event)
+{
+	Evas_Coord x, y, w, h;
+	GameData *game = data;
+	evas_object_geometry_get(game->layout, &x, &y, &w, &h);
+	game_resize(game, w, h);
+	printf("W:: %d, H:: %d\n", w, h);
+}
+
 static Eina_Bool _game_key_down_cb(void *data, int type, void *event)
 {
 }
@@ -31,7 +40,22 @@ void game_init(GameData *data, int argc, char** argv)
 	evas_object_size_hint_weight_set(data->layout, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	elm_win_resize_object_add(data->win, data->layout);
 	evas_object_show(data->layout);
+	evas_object_event_callback_add(data->layout, EVAS_CALLBACK_RESIZE, _on_resize, data);
 
+	data->food = calloc(1, sizeof(Snake_Food));
+	snake_food_generate_random(data->food, data->win);
+	snake_food_draw(data->food);
+}
+
+void game_resize(GameData *data, Evas_Coord w, Evas_Coord h)
+{
+//	food::width = w/FOOD_BOXES;
+//	food::height = h/FOOD_BOXES;
+	snake_food_width_set(w/FOOD_BOXES);
+	snake_food_height_set(h/FOOD_BOXES);
+//	LOG_DBG("%d :::::::::::::::::::::: %d \n", width, height);
+	snake_food_update(data->food);
+//	data->food
 }
 
 void game_resume(GameData *data)

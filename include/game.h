@@ -18,6 +18,7 @@ struct _GameData	{
 };
 
 void game_init(GameData *data, int argc, char** argv);
+void game_resize(GameData *data, Evas_Coord w, Evas_Coord h);
 void game_resume(GameData *data);
 void game_pause(GameData *data);
 void game_quit(GameData *data);

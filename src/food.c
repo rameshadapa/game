@@ -31,3 +31,13 @@ void snake_food_generate_random(Snake_Food *food, Evas_Object *parent)
 	food->pos_y = y;
 	snake_food_update(food);
 }
+
+void snake_food_width_set(Evas_Coord w)
+{
+	width = w;
+}
+
+void snake_food_height_set(Evas_Coord h)
+{
+	height = h;
+}

@@ -1,3 +1,6 @@
+#ifndef __LAYOUT_EDC__
+#define __LAYOUT_EDC__
+
 #include "../../include/const.h"
 
 collections {
@@ -19,3 +22,5 @@ collections {
 		}
 	}
 }
+#endif	/**	__LAYOUT_EDC__	**/
+#undef __LAYOUT_EDC__

@@ -7,6 +7,8 @@
 #define PLAYABLE_WIDTH	600
 #define PLAYABLE_HEIGHT	400
 
+#define TIMER_CONST		0.1
+
 /** Layout related constants  ***/
 #define GAME_MAIN_GROUP	"game.ui"
 #define GAME_PLAYABLE_BG	"game.playable.bg"

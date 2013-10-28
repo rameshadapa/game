@@ -43,7 +43,7 @@ void game_init(GameData *data, int argc, char** argv)
 	evas_object_event_callback_add(data->layout, EVAS_CALLBACK_RESIZE, _on_resize, data);
 
 	data->food = calloc(1, sizeof(Snake_Food));
-	snake_food_generate_random(data->food, data->win);
+	snake_food_generate_random(data->food, data->layout);
 	snake_food_draw(data->food);
 }
 
@@ -53,6 +53,8 @@ void game_resize(GameData *data, Evas_Coord w, Evas_Coord h)
 //	food::height = h/FOOD_BOXES;
 	snake_food_width_set(w/FOOD_BOXES);
 	snake_food_height_set(h/FOOD_BOXES);
+//	snake_food_x_start_pos();
+//	snake_food_y_start_pos();
 //	LOG_DBG("%d :::::::::::::::::::::: %d \n", width, height);
 	snake_food_update(data->food);
 //	data->food
@@ -75,5 +77,18 @@ void game_draw(GameData *data)
 }
 
 void game_update(GameData *data)
+{
+}
+
+Evas_Coord game_play_width_get()
+{
+}
+Evas_Coord game_play_height_get()
+{
+}
+Evas_Coord game_play_start_posx()
+{
+}
+Evas_Coord game_play_start_posy()
 {
 }
